@@ -1,0 +1,42 @@
+print('''
+      |_|   ,
+     ('.') ///
+     <(_)`-/'
+ <-._/J L /  -bf-
+
+     _            _ _ 
+    | |          (_) |
+  __| | _____   ___| |
+ / _` |/ _ \ \ / / | |
+| (_| |  __/\ V /| | |
+ \__,_|\___| \_/ |_|_|
+''')
+print("ESCAPE GAME : Free From Hell.")
+print("Your LIFE is your CHOICE, CARE your step.")
+
+hide = input("When you see one devil guard is sleeping and you thought, you can escape. What will you do? Run or Crawl? \n> ").lower()
+if hide == "run":
+  print("You are Caught by Devil. Your run made devil awaken.")
+elif hide == "crawl":
+  # print("You free")
+  junction = input("\nAt the junction of 4 ways, which will you choice? left, right, up or down?\n> ").lower()
+  # if junction == "left" or junction == "right" or junction == "down":
+  if junction == "left" and "right" and "down":
+    print("You caught! You mess with hell creatures.")
+  elif junction == "up":
+    # print("You Free")
+    fight = input("\nThere's a ton of guard is routing in your way. Will you fight? or hide?\n> ").lower()
+    if fight == "fight":
+      print("You caught! The devil are too strong, you defeated.")
+    elif fight == "hide":
+      # print("You Free")
+      hellgate = input("\nWhen they gone, you come out and you see the \"HELL GATE\". To pass through the gate, will you pretent as a no-guilt? or will you choose another way?\nPretent? or another way?\n> ").lower()
+      if hellgate == "another way":
+        print("You caught! They detect you.")
+      elif hellgate == "pretent":
+        mind_color = input("\nAs you pretent as a no-guilt person, you need to answer your color of mind. What would be?\n> ").lower()
+        free = mind_color.count('l' or 'o' or 'v' or 'e')
+        if free >= 1:
+          print("\nYou are now FREE from Hell! Go Far as you can. So Far So Good!")
+        else:
+          print("\nYou Caught! You can't pretent very well.")
