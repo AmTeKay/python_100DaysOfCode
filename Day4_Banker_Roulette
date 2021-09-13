@@ -1,0 +1,7 @@
+names_string = input("Give me everybody's names, separated by a comma. ")
+names = names_string.split(", ")
+
+n = len(names)
+choice1 = random.randint(0, n-1)
+person = names[choice1]
+print(f"{person} is going to buy the meal today!")
