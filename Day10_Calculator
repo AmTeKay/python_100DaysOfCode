@@ -1,0 +1,55 @@
+from replit import clear
+from art import logo
+
+def add(n1, n2):
+  return n1 + n2
+
+def subtract(n1, n2):
+  return n1 - n2
+
+def multiply(n1, n2):
+  return n1 * n2
+
+def divide(n1, n2):
+  return n1 / n2
+
+operations = {
+  "+": add,
+  "-": subtract,
+  "*": multiply,
+  "/": divide
+}
+
+#symbol function
+def symbol():
+    for x in operations:
+        print(x)
+    operation_symbol = input("Pick an Operation: ")
+    return operation_symbol
+
+#Calculator
+def calculator():
+    print(logo)
+    process = True
+    num1 = float( input("What is your first number : "))
+    while process:
+        y = symbol()
+        num2 = float( input("What is your next number : "))
+
+        func = operations[y]
+        answer = round(func(num1, num2))
+
+        print(f"\n>> {num1} {y} {num2} = {answer}\n")
+        num1 = answer
+
+        ask = input("Type 'y' to continue\nType 'n' to new calculation\nType 'e' to exit\n> ").lower()
+
+        if ask == "n":
+            process = False
+            clear()
+            calculator()
+        elif ask == "e":
+            process = False
+            clear()
+
+calculator()
