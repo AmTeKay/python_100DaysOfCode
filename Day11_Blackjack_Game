@@ -1,0 +1,151 @@
+import random
+from art import logo
+from replit import clear
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+
+
+play = input("Do you want to play Blackjack? type 'y' or 'n': ").lower()
+if play == "y":
+	game = True
+	while game:
+		print(logo)
+		#For User
+		user = []
+		for u in range(2):
+			user.append(random.choice(cards))
+			### Double Ace Check
+			if sum(user) > 21:
+				if 11 in user:
+					y = user.index(11)
+					user[y] = 1
+
+		#For Computer
+		computer = []
+		for c in range(2):
+			computer.append(random.choice(cards))
+			### Double Ace Check
+			if sum(computer) > 21:
+				if 11 in computer:
+					z = computer.index(11)
+					computer[z] = 1
+
+		#Print Frist Output if less than 21
+		if sum(user) < 21 and sum(computer) < 21:
+			print(f"	Your cards: {user}, score {sum(user)}")
+			print(f"	Computer card: {computer[0]}\n")
+
+
+		## First start with 21 check
+		if sum(user) == 21:
+			if sum(computer) == 21:
+				print(f"	Your Final cards: {user}, Final score: {sum(user)}")
+				print(f"	Computer Final cards: {computer}, Final score: {sum(computer)}\n")
+				print("lose, opponent has blackjack!")
+				#### Play Again !!! ####
+				play_again = input("\nDo You want to play again? type 'y' or 'n': ").lower()
+				if play_again == "n":
+					game = False
+					print("Good Bye!!!")
+				else:
+					clear()
+				#### Play End ####
+			else:
+				print(f"	Your Final cards: {user}, Final score: {sum(user)}")
+				print(f"	Computer Final cards: {computer}, Final score: {sum(computer)}\n")
+				print(f"You win, BLACKJACK!")
+				#### Play Again !!! ####
+				play_again = input("\nDo You want to play again? type 'y' or 'n': ").lower()
+				if play_again == "n":
+					game = False
+					print("Good Bye!!!")
+				else:
+					clear()
+				#### Play End ####
+		elif sum(computer) == 21:
+			print(f"	Your Final cards: {user}, Final score: {sum(user)}")
+			print(f"	Computer Final cards: {computer}, Final score: {sum(computer)}\n")
+			print(f"lose, opponent has BLACKJACK!")
+			#### Play Again !!! ####
+			play_again = input("\nDo You want to play again? type 'y' or 'n': ").lower()
+			if play_again == "n":
+				game = False
+				print("Good Bye!!!")
+			else:
+				clear()
+			#### Play End ####
+		else:
+			## Second , Draw another cards
+			process = True
+			while process:
+				ask = input("Type 'y' to more card, 'n' to pass: ").lower()
+				print("")
+				if ask == 'y':
+					user.append(random.choice(cards))
+					# numbers["user"] = sum(user)
+					if sum(user) < 21:
+						print(f"	Your cards: {user}, score {sum(user)}")
+						print(f"	Computer card: {computer[0]}\n")
+					### For "21" With 3 cards
+					elif sum(user) == 21:
+						print(f"	Your Final cards: {user}, Final score: {sum(user)}")
+						print(f"	Computer Final cards: {computer}, Final score: {sum(computer)}\n")	
+						print("You Win, BlackJack!")
+						process = False
+					### Check Over 21
+					if sum(user) > 21:
+						### Check Over 21 with Ace
+						if 11 in user:
+							y = user.index(11)
+							user[y] = 1
+							print(f"	Your cards: {user}, score {sum(user)}")
+							print(f"	Computer card: {computer[0]}\n")
+						### Over 21, Game over
+						else:
+							print(f"	Your Final cards: {user}, Final score: {sum(user)}")
+							print(f"	Computer Final cards: {computer}, Final score: {sum(computer)}\n")
+							print("lose, You went over!")
+							process = False
+				else:
+					## Second, Computer Draw Another cards
+					process = False
+					while not sum(computer) > 16:
+						computer.append(random.choice(cards))
+						if sum(computer) > 21:
+							if 11 in computer:
+								z = computer.index(11)
+								computer[z] = 1
+					### Check Over 21
+					if sum(computer) > 21:
+						print(f"	Your Final cards: {user}, Final score: {sum(user)}")
+						print(f"	Computer Final cards: {computer}, Final score: {sum(computer)}\n")
+						print("You win, opponent went over")
+					### For "21" with 3 cards
+					elif sum(computer) == 21:
+						print(f"	Your Final cards: {user}, Final score: {sum(user)}")
+						print(f"	Computer Final cards: {computer}, Final score: {sum(computer)}\n")	
+						print("lose, opponent has Blackjack!")					
+					#### Finally Block 7 , Win or Lose
+					else:
+						### Print Out Final Scores
+						print(f"	Your Final cards: {user}, Final score: {sum(user)}")
+						print(f"	Computer Final cards: {computer}, Final score: {sum(computer)}\n")
+						us = sum(user)
+						cs = sum(computer)
+						### Win or Lose
+						if us > cs:
+							print("You Win!")
+						elif cs > us:
+							print("You Lose!")
+						elif us == cs:
+							print("Draw")
+						
+						#### Play Again !!!
+						play_again = input("\nDo You want to play again? type 'y' or 'n': ").lower()
+						if play_again == "n":
+							game = False
+							print("\n~~~Good Bye!!!")
+						else:
+							clear()
+					
+else:
+	print("Good Bye")
